@@ -299,8 +299,7 @@ index:
         - *id002
     en.wikipedia.org/wiki/Augusta_Daily_Gazette:
         wikipedia:
-        - &id083
-            address: Augusta, Kansas
+        -   address: Augusta, Kansas
             contact_page: ''
             editor: ''
             facebook: ''
@@ -729,7 +728,8 @@ index:
             wikipedia: https://en.wikipedia.org/wiki/The_De_Soto_Explorer
     en.wikipedia.org/wiki/The_El_Dorado_Times:
         wikipedia:
-        -   address: ''
+        - &id083
+            address: ''
             contact_page: ''
             editor: ''
             facebook: ''
@@ -3268,8 +3268,7 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        - &id275
-            Address: PO Box 544
+        -   Address: PO Box 544
             Alternate Address: NONE
             Circulation: '1082'
             City: Cheney
@@ -4032,7 +4031,8 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        -   Address: PO Box 958
+        - &id142
+            Address: PO Box 958
             Alternate Address: 310 N. Seventh St.
             Circulation: '3000'
             City: Garden City
@@ -4074,7 +4074,8 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        -   Address: 517 Merchant St.
+        - &id101
+            Address: 517 Merchant St.
             Alternate Address: P.O. Drawer C
             Circulation: '6500'
             City: Emporia
@@ -5827,8 +5828,7 @@ index:
         ksa_site:
         - *id033
         src_url:
-        - &id101
-            Address: 517 Merchant St.
+        -   Address: 517 Merchant St.
             Alternate Address: P.O. Drawer C
             Circulation: '6350'
             City: Emporia
@@ -5954,7 +5954,8 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        -   Address: 422 Seneca
+        - &id192
+            Address: 422 Seneca
             Alternate Address: NONE
             Circulation: '3000'
             City: Leavenworth
@@ -6285,8 +6286,7 @@ index:
         ksa_site:
         - *id038
         src_url:
-        - &id192
-            Address: 422 Seneca St.
+        -   Address: 422 Seneca St.
             Alternate Address: NONE
             Circulation: '3790'
             City: Leavenworth
@@ -7079,7 +7079,8 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        -   Address: 16 S. Kansas
+        - &id161
+            Address: 16 S. Kansas
             Alternate Address: NONE
             Circulation: '3700'
             City: Liberal
@@ -7163,8 +7164,7 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        - &id161
-            Address: 218 S. Kansas
+        -   Address: 218 S. Kansas
             Alternate Address: NONE
             Circulation: '5400'
             City: Liberal
@@ -8673,7 +8673,8 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        -   Address: PO Box 417
+        - &id248
+            Address: PO Box 417
             Alternate Address: PO Box 269
             Circulation: '1823'
             City: Oswego
@@ -9202,8 +9203,7 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        - &id198
-            Address: 958 E. Wichita Ave.
+        -   Address: 958 E. Wichita Ave.
             Alternate Address: PO Box 513
             Circulation: '2282'
             City: Russell
@@ -9245,8 +9245,7 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        - &id248
-            Address: 226 E. Main
+        -   Address: 226 E. Main
             Alternate Address: PO Box 417
             Circulation: '1861'
             City: Sedan
@@ -9447,7 +9446,8 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        -   Address: PO Box 544
+        - &id275
+            Address: PO Box 544
             Alternate Address: 125 N. Main
             Circulation: '1017'
             City: Cheney
@@ -11464,7 +11464,8 @@ index:
             website: ''
             wikipedia: ''
         src_url:
-        -   Address: PO Box 7
+        - &id198
+            Address: PO Box 7
             Alternate Address: NONE
             Circulation: '757'
             City: Cawker City
@@ -11623,8 +11624,7 @@ index:
         ksa_site:
         - *id006
         src_url:
-        - &id142
-            Address: PO Box 958
+        -   Address: PO Box 958
             Alternate Address: 310 N. Seventh St.
             Circulation: '6872'
             City: Garden City
@@ -11901,7 +11901,7 @@ index:
         - *id029
     peabodykansas.com:
         named:
-        - &id284
+        - &id289
             A: http://www.usnpl.com/addr/aaddressresult.php?id=4217
             C: http://www.usnpl.com/addr/aacountyresult.php?countyid=948
             W: http://www.wunderground.com/cgi-bin/findweather/getForecast?query=Peabody,%20KS&wuSelect=WEATHER
@@ -12201,7 +12201,7 @@ index:
         Website:
         - *id076
         named:
-        - &id287
+        - &id284
             A: http://www.usnpl.com/addr/aaddressresult.php?id=1173
             C: http://www.usnpl.com/addr/aacountyresult.php?countyid=940
             F: https://www.facebook.com/thebasehorsentinel
@@ -12429,7 +12429,7 @@ index:
             named: http://www.esubulletin.com/
     www.eudoranews.com:
         named:
-        - &id283
+        - &id285
             A: http://www.usnpl.com/addr/aaddressresult.php?id=1187
             C: http://www.usnpl.com/addr/aacountyresult.php?countyid=939
             W: http://www.wunderground.com/cgi-bin/findweather/getForecast?query=Eudora,%20KS&wuSelect=WEATHER
@@ -13209,7 +13209,7 @@ index:
         Website:
         - *id187
         named:
-        - &id285
+        - &id287
             A: http://www.usnpl.com/addr/aaddressresult.php?id=1203
             C: http://www.usnpl.com/addr/aacountyresult.php?countyid=952
             W: http://www.wunderground.com/cgi-bin/findweather/getForecast?query=Kiowa,%20KS&wuSelect=WEATHER
@@ -13310,7 +13310,7 @@ index:
         - *id023
     www.nwkansas.com/bcwebpages/bcmain.html:
         named:
-        - &id286
+        - &id283
             A: http://www.usnpl.com/addr/aaddressresult.php?id=4885
             C: http://www.usnpl.com/addr/aacountyresult.php?countyid=969
             W: http://www.wunderground.com/cgi-bin/findweather/getForecast?query=Bird%20City,%20KS&wuSelect=WEATHER
@@ -13331,7 +13331,7 @@ index:
         - *id217
     www.olathedailynews.com:
         named:
-        - &id289
+        - &id288
             A: http://www.usnpl.com/addr/aaddressresult.php?id=1216
             C: http://www.usnpl.com/addr/aacountyresult.php?countyid=960
             W: http://www.wunderground.com/cgi-bin/findweather/getForecast?query=Olathe,%20KS&wuSelect=WEATHER
@@ -13432,7 +13432,7 @@ index:
         Website:
         - *id244
         named:
-        - &id288
+        - &id286
             A: http://www.usnpl.com/addr/aaddressresult.php?id=1195
             C: http://www.usnpl.com/addr/aacountyresult.php?countyid=948
             W: http://www.wunderground.com/cgi-bin/findweather/getForecast?query=Hillsboro,%20KS&wuSelect=WEATHER
@@ -13708,7 +13708,7 @@ index:
         - *id106
     www.usnpl.com/addr/aacountyresult.php?countyid=905:
         C:
-        - *id107
+        - *id120
     www.usnpl.com/addr/aacountyresult.php?countyid=907:
         C:
         - *id167
@@ -13753,13 +13753,13 @@ index:
         - *id278
     www.usnpl.com/addr/aacountyresult.php?countyid=933:
         C:
-        - *id180
+        - *id130
     www.usnpl.com/addr/aacountyresult.php?countyid=939:
         C:
-        - *id283
+        - *id197
     www.usnpl.com/addr/aacountyresult.php?countyid=940:
         C:
-        - *id129
+        - *id193
     www.usnpl.com/addr/aacountyresult.php?countyid=942:
         C:
         - *id191
@@ -13771,7 +13771,7 @@ index:
         - *id111
     www.usnpl.com/addr/aacountyresult.php?countyid=948:
         C:
-        - *id284
+        - *id156
     www.usnpl.com/addr/aacountyresult.php?countyid=949:
         C:
         - *id204
@@ -13780,13 +13780,13 @@ index:
         - *id206
     www.usnpl.com/addr/aacountyresult.php?countyid=952:
         C:
-        - *id285
+        - *id147
     www.usnpl.com/addr/aacountyresult.php?countyid=956:
         C:
         - *id277
     www.usnpl.com/addr/aacountyresult.php?countyid=960:
         C:
-        - *id105
+        - *id236
     www.usnpl.com/addr/aacountyresult.php?countyid=963:
         C:
         - *id221
@@ -13795,13 +13795,13 @@ index:
         - *id219
     www.usnpl.com/addr/aacountyresult.php?countyid=965:
         C:
-        - *id152
+        - *id145
     www.usnpl.com/addr/aacountyresult.php?countyid=967:
         C:
         - *id224
     www.usnpl.com/addr/aacountyresult.php?countyid=969:
         C:
-        - *id286
+        - *id283
     www.usnpl.com/addr/aacountyresult.php?countyid=970:
         C:
         - *id240
@@ -13819,7 +13819,7 @@ index:
         - *id108
     www.usnpl.com/addr/aacountyresult.php?countyid=989:
         C:
-        - *id124
+        - *id280
     www.usnpl.com/addr/aaddressresult.php?id=1167:
         A:
         - *id119
@@ -13837,7 +13837,7 @@ index:
         - *id115
     www.usnpl.com/addr/aaddressresult.php?id=1173:
         A:
-        - *id287
+        - *id284
     www.usnpl.com/addr/aaddressresult.php?id=1174:
         A:
         - *id130
@@ -13870,7 +13870,7 @@ index:
         - *id116
     www.usnpl.com/addr/aaddressresult.php?id=1187:
         A:
-        - *id283
+        - *id285
     www.usnpl.com/addr/aaddressresult.php?id=1189:
         A:
         - *id143
@@ -13891,7 +13891,7 @@ index:
         - *id156
     www.usnpl.com/addr/aaddressresult.php?id=1195:
         A:
-        - *id288
+        - *id286
     www.usnpl.com/addr/aaddressresult.php?id=1196:
         A:
         - *id282
@@ -13912,7 +13912,7 @@ index:
         - *id184
     www.usnpl.com/addr/aaddressresult.php?id=1203:
         A:
-        - *id285
+        - *id287
     www.usnpl.com/addr/aaddressresult.php?id=1204:
         A:
         - *id193
@@ -13948,7 +13948,7 @@ index:
         - *id255
     www.usnpl.com/addr/aaddressresult.php?id=1216:
         A:
-        - *id289
+        - *id288
     www.usnpl.com/addr/aaddressresult.php?id=1217:
         A:
         - *id145
@@ -14002,7 +14002,7 @@ index:
         - *id167
     www.usnpl.com/addr/aaddressresult.php?id=4217:
         A:
-        - *id284
+        - *id289
     www.usnpl.com/addr/aaddressresult.php?id=4242:
         A:
         - *id240
@@ -14037,7 +14037,7 @@ index:
         - *id215
     www.usnpl.com/addr/aaddressresult.php?id=4885:
         A:
-        - *id286
+        - *id283
     www.voiceitwichita.com:
         Website:
         - *id290
@@ -14086,10 +14086,10 @@ index:
         - *id115
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Basehor,%20KS&wuSelect=WEATHER:
         W:
-        - *id287
+        - *id284
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Bird%20City,%20KS&wuSelect=WEATHER:
         W:
-        - *id286
+        - *id283
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Bonner%20Springs,%20KS&wuSelect=WEATHER:
         W:
         - *id130
@@ -14128,7 +14128,7 @@ index:
         - *id116
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Eudora,%20KS&wuSelect=WEATHER:
         W:
-        - *id283
+        - *id285
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Fort%20Scott,%20KS&wuSelect=WEATHER:
         W:
         - *id134
@@ -14170,10 +14170,10 @@ index:
         - *id180
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Kiowa,%20KS&wuSelect=WEATHER:
         W:
-        - *id285
+        - *id287
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Lansing,%20KS&wuSelect=WEATHER:
         W:
-        - *id129
+        - *id193
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Lawrence,%20KS&wuSelect=WEATHER:
         W:
         - *id197
@@ -14206,7 +14206,7 @@ index:
         - *id255
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Olathe,%20KS&wuSelect=WEATHER:
         W:
-        - *id289
+        - *id288
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Osage%20City,%20KS&wuSelect=WEATHER:
         W:
         - *id216
@@ -14224,7 +14224,7 @@ index:
         - *id221
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Peabody,%20KS&wuSelect=WEATHER:
         W:
-        - *id284
+        - *id289
     www.wunderground.com/cgi-bin/findweather/getForecast?query=Pittsburg,%20KS&wuSelect=WEATHER:
         W:
         - *id210

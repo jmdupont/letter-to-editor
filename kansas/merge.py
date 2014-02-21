@@ -1,7 +1,8 @@
 import yaml
-import cache 
+import cache
 
-def read (filename):
+
+def read(filename):
     stream = open(filename, 'r')
     data = yaml.load(stream)
     return data
@@ -9,39 +10,40 @@ def read (filename):
 index = {}
 index2 = {}
 
-def index_object(filename, data,i):
+
+def index_object(filename, data, i):
     d = data[i]
-    for k in d.keys() :
+    for k in d.keys():
         if k not in (
-            'A',
-            'C',
-            'contact_page',
-            'F', 
-            'facebook', 
-            'ksa_site', 
-            'named' ,
-            'src_url', 
-            'T', 
-            'twitter', 
-            'user_forum', 
-            'V', 
-            'W', 
-            'website', 
-            'Website', 
-            'wikipedia'):
+                'A',
+                'C',
+                'contact_page',
+                'F',
+                'facebook',
+                'ksa_site',
+                'named',
+                'src_url',
+                'T',
+                'twitter',
+                'user_forum',
+                'V',
+                'W',
+                'website',
+                'Website',
+                'wikipedia'):
             continue
         v = d[k]
 
-        if not isinstance(v,str):
+        if not isinstance(v, str):
             continue
 
-        if v.startswith('No Website') :
+        if v.startswith('No Website'):
             continue
 
         v = v.strip().rstrip()
         v = v.rstrip("/")
-        v = v.replace("http://","")
-        v = v.replace("https://","")
+        v = v.replace("http://", "")
+        v = v.replace("https://", "")
 
         # strip
         if not v:
@@ -54,13 +56,13 @@ def index_object(filename, data,i):
             continue
 
         if v not in index:
-            index[v]={}
+            index[v] = {}
         if k not in index[v]:
 
             # now lets make sure we can cache this all
-            cache.cache("http://%s" %v)
+            cache.cache("http://%s" % v)
 
-            index[v][k]=[]
+            index[v][k] = []
             print ("adding key:'%s' val'%s'" % (k, v))
             index[v][k].append(d)
 #            ref = "|".join((filename,i))
@@ -69,10 +71,11 @@ def index_object(filename, data,i):
 #            index[v][k][ref]=index[v][k][ref]+1
 #            index2[ref] = d
 
+
 def index_data(filename, data):
 
     for i in data.keys():
-        index_object(filename, data,i)
+        index_object(filename, data, i)
 
 
 for f in (
@@ -80,13 +83,13 @@ for f in (
     'media_in_kansas.yaml',
     'usnpl.yaml',
     'mondotimes.yaml'
-    ):
+):
     d = read(f)
-    index_data(f,d)
+    index_data(f, d)
 
-o= open('merge.yaml', 'w')
-o.write (yaml.dump(
-        {
-            "index":index, 
-            #"data" : index2
-            }, indent=4,default_flow_style=False ))
+o = open('merge.yaml', 'w')
+o.write(yaml.dump(
+    {
+        "index": index,
+        #"data" : index2
+        }, indent=4, default_flow_style=False))

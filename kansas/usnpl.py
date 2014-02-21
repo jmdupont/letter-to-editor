@@ -1,17 +1,17 @@
 from cache import cache
-import urllib.request
-from html.parser  import HTMLParser
-import os
+from html.parser import HTMLParser
 import yaml
 
 # create a subclass and override the handler methods
-names= {}
+names = {}
+
 
 class MyHTMLParser(HTMLParser):
+
     def __init__(self):
         HTMLParser.__init__(self)
         self.state = []
-        self.href= ""
+        self.href = ""
         self.field = []
         self.obj = {}
         self.objs = []
@@ -22,31 +22,32 @@ class MyHTMLParser(HTMLParser):
         if self.done:
             return
         if attrs:
-            if self.state[0:8] == ['html', 'head', 'meta', 'body', 'div', 'div', 'div', 'div']:
-#                print ("Encountered a start tag:", tag)
-                #print ("D:  %s:" % (self.state))
+            if self.state[0:8] == ['html', 'head', 'meta', 'body', 'div',
+                                   'div', 'div', 'div']:
+            #                print ("Encountered a start tag:", tag)
+            #print ("D:  %s:" % (self.state))
                 type_name = attrs[0][0]
                 if type_name == "href":
                     href = attrs[0][1]
                     if href == 'clearfloat':
                         self.done = True
                         return
-                    
-                    if href[0] == "h" :
+
+                    if href[0] == "h":
                         self.href = href
                     else:
                         url = "http://www.usnpl.com/%s" % href
                         self.href = url
 
-            if self.href == 'http://www.usnpl.com/address/npmail.php' :
+            if self.href == 'http://www.usnpl.com/address/npmail.php':
                 self.href = ""
         self.href = self.href.strip().rstrip()
-        self.href = self.href.replace(" ","%20")
-        if self.href.find(" ")> 0:
+        self.href = self.href.replace(" ", "%20")
+        if self.href.find(" ") > 0:
             print(self.href)
 
         self.state.append(tag)
-            
+
     def handle_endtag(self, tag):
         if self.done:
             return
@@ -57,23 +58,23 @@ class MyHTMLParser(HTMLParser):
 
     def handle_data(self, data):
 
-
         if self.done:
             return
 
-        if self.state[0:8] == ['html', 'head', 'meta', 'body', 'div', 'div', 'div', 'div']:
-            data= data.replace("\n","")
+        if self.state[0:8] == ['html', 'head', 'meta', 'body', 'div',
+                               'div', 'div', 'div']:
+            data = data.replace("\n", "")
             data = data.strip().rstrip()
-            if (data) :
-                if data ==  "(":
+            if (data):
+                if data == "(":
                     pass
-                elif data == ')(' : 
+                elif data == ')(':
                     pass
                 else:
 
                     #print ("D2: %s" % (data))
-                    if data == "for address downloads." :
-                        self.field=[]
+                    if data == "for address downloads.":
+                        self.field = []
 
                     if data in (
                             '?',
@@ -90,7 +91,7 @@ class MyHTMLParser(HTMLParser):
                             'US Newspapers',
                             'USNPL',
                             'USNPL has address downloads for',
-                            'and', 
+                            'and',
                             'Statewide',
                             'College Newspapers',
                             'Magazines',
@@ -107,7 +108,7 @@ class MyHTMLParser(HTMLParser):
                             'Untitled Document',
                             'here',
                             'for address downloads.',
-                            'Craigslist for State', 
+                            'Craigslist for State',
                             'State Newspapers',
                             'State TV Stations',
                             'State Radio Stations',
@@ -120,7 +121,7 @@ class MyHTMLParser(HTMLParser):
                             'US Census by County',
                             'County Listing by City',
                             'State Governor',
-                            'State House', 
+                            'State House',
                             'State Senate',
                             'State Constitution',
                             'US House',
@@ -129,7 +130,7 @@ class MyHTMLParser(HTMLParser):
                     ):
                         return
 
-                    elif data ==  ")":
+                    elif data == ")":
                         #print ("Field:" + str(self.field))
                         #self.obj[data] = str(self.href)
                         self.href = ""
@@ -137,22 +138,22 @@ class MyHTMLParser(HTMLParser):
                         obj = self.obj
                         self.obj = {}
 
-                        address=[]
+                        address = []
                         name = ""
                         city = ""
-                        for k in obj.keys() :
-                            if k not in ("A","F","T","V", "C", "W"):
+                        for k in obj.keys():
+                            if k not in ("A", "F", "T", "V", "C", "W"):
                                 v = obj[k]
-                                if not v :
+                                if not v:
                                     city = k
                                 else:
                                     name = k
 
-                                if len(k)>2:
+                                if len(k) > 2:
                                     address.append(k)
                                 else:
                                     print ("WARN %s" % k)
-                        #http://www.usnpl.com/addr/aaddressresult.php?id=1167
+                        # http://www.usnpl.com/addr/aaddressresult.php?id=1167
 
                         if (name):
                             obj['name'] = name
@@ -162,7 +163,7 @@ class MyHTMLParser(HTMLParser):
                         else:
                             return
 
-                        if city :
+                        if city:
                             if (obj[city]):
                                 obj['city_'] = obj[city]
 
@@ -176,9 +177,6 @@ class MyHTMLParser(HTMLParser):
                         #print ("'%s'" % data)
                         self.obj[data] = str(self.href)
                         self.href = ""
-                    
-
-
 
 string = cache("http://www.usnpl.com/ksnews.php")
 parser = MyHTMLParser()
@@ -189,12 +187,9 @@ for idx in parser.index:
     obj = parser.index[idx]
 
     # "W", eather, leave that out
-    for a in ("A","F","T","V", "C", "named","city_"):
+    for a in ("A", "F", "T", "V", "C", "named", "city_"):
         if a in obj:
             cache(obj[a])
 
-    
-
-o= open('usnpl.yaml', 'w')
-o.write (yaml.dump(parser.index, indent=4,default_flow_style=False ))
-
+o = open('usnpl.yaml', 'w')
+o.write(yaml.dump(parser.index, indent=4, default_flow_style=False))
