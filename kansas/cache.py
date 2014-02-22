@@ -7,6 +7,8 @@ from urllib.error import HTTPError
 from urllib.error import URLError
 import yaml
 import cgi
+import time
+import os
 
 BADURLS = (
     'http://www.youtube.com/user/cjonline11',
@@ -28,8 +30,9 @@ class Cache:
         outurl,
         header,
         charset,
-        rawdata,
-        data):
+        data,
+        rawdata=None,
+        ):
         self.inurl = inurl,
         self.outurl = outurl,
         self.header = header,
@@ -111,7 +114,7 @@ def fetch2(filename, url):
     try:
         obj = {
             'inurl': url,
-            'outurl': res.href,
+            'outurl': res.url,
             'header': res.info(),
             'charset': charset,
             'data': data.decode(charset),
@@ -128,7 +131,7 @@ def fetch2(filename, url):
 
 def cache(url):
     name = url
-    print(("load url: %s" % url))
+    #print(("request url: %s" % url))
     href = None
     name = name.replace("/", "").replace(".", "").replace(":", "")
 
@@ -147,7 +150,13 @@ def cache(url):
             os.remove(filename)
 
     if not os.path.isfile(filename):
-        fetch2(filename, url)
+        return fetch2(filename, url)
+
+    st=os.stat(filename)
+    mtime=st.st_mtime
+    if mtime < 60 * 60 * 24 * 5: # five days
+        return fetch2(filename, url)
+
 
     p = open(filename, "r")
     try:
@@ -155,14 +164,23 @@ def cache(url):
     except:
         return "ERROR"
 
-    try:
-        return Cache(**yaml.load(string))
-    except Exception as exp:
-        print("is yaml?: %s" % string[0:10])
-        print("yaml error: %s" % exp)
-        return Cache(inurl=url,
-                     outurl=url,
-                     data=string,
-                     header=None,
-                     charset=None,
-                     rawdata=None)
+    start = string[0:10]
+
+    if string[0] == "<" :
+        # it is an html file, lets just get it again
+        return fetch2(filename, url)
+        # return Cache(inurl=url,
+        #              outurl=url,
+        #              data=string,
+        #              header=None,
+        #              charset=None,
+        #              rawdata=None)
+    else:
+        try:
+            return Cache(**yaml.load(string))
+
+        except Exception as exp:
+            print("error: %s" % url)
+            print("is yaml?: %s" % string)
+            print("yaml error: %s" % exp)
+            raise exp

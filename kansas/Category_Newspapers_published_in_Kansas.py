@@ -29,6 +29,11 @@ class MyHTMLParser(HTMLParser):
                 if href[0] == "h":
                     self.href = href
                 else:
+#                    print ("attrs %s" % attrs)
+
+                    href=href.strip("\\\"")
+                    href=href.rstrip("\\\"")
+#                    print ("href %s" % href)
                     self.href = "https://en.wikipedia.org%s" % href
             if self.href == 'https://en.wikipedia.org':
                 self.href = ""
@@ -52,11 +57,12 @@ class MyHTMLParser(HTMLParser):
             'div',
             'div', 'div', 'table', 'tr', 'td', 'ul', 'li', 'a'
         ]:
-            print(("Article", data, self.href))
+            #print(("Article", data, self.href))
             self.obj["name"] = data
             self.obj["page"] = self.href
             if "name" in self.obj:
                 self.index[self.obj["name"]] = self.obj
+                #print ("adding data: %s" % self.obj)
             self.obj = {}
 
         else:
@@ -76,13 +82,17 @@ def main():
            'Category:Newspapers_published_in_Kansas')
     obj = cache(url)
     parser = MyHTMLParser()
-    parser.feed(str(obj))
+    strd = str(obj)
+    print(strd[0:10])
+    parser.feed(strd)
 
     for idx in parser.index:
         obj = parser.index[idx]
         for field in ("page", 'siteurl'):
             if field in obj:
-                cache(obj[field])
+                val = obj[field]
+                if val:
+                    cache(val)
 
     output = open('Category_Newspapers_published_in_Kansas.yaml', 'w')
     output.write(yaml.dump(parser.index, indent=4, default_flow_style=False))
