@@ -24,8 +24,6 @@ class MyHTMLParser(HTMLParser):
         if attrs:
             if self.state[0:8] == ['html', 'head', 'meta', 'body', 'div',
                                    'div', 'div', 'div']:
-            #                print ("Encountered a start tag:", tag)
-            #print ("D:  %s:" % (self.state))
                 type_name = attrs[0][0]
                 if type_name == "href":
                     href = attrs[0][1]
@@ -44,7 +42,7 @@ class MyHTMLParser(HTMLParser):
         self.href = self.href.strip().rstrip()
         self.href = self.href.replace(" ", "%20")
         if self.href.find(" ") > 0:
-            print(self.href)
+            print((self.href))
 
         self.state.append(tag)
 
@@ -141,7 +139,7 @@ class MyHTMLParser(HTMLParser):
                         address = []
                         name = ""
                         city = ""
-                        for k in obj.keys():
+                        for k in list(obj.keys()):
                             if k not in ("A", "F", "T", "V", "C", "W"):
                                 v = obj[k]
                                 if not v:
@@ -152,7 +150,7 @@ class MyHTMLParser(HTMLParser):
                                 if len(k) > 2:
                                     address.append(k)
                                 else:
-                                    print ("WARN %s" % k)
+                                    print(("WARN %s" % k))
                         # http://www.usnpl.com/addr/aaddressresult.php?id=1167
 
                         if (name):

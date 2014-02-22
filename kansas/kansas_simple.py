@@ -142,7 +142,7 @@ for l in f.readlines():
     parser.feed(string)
     data[name] = parser.attr
 
-for item in data.keys():
+for item in list(data.keys()):
     obj = data[item]
 #    print (obj)
     if "Website" in obj:

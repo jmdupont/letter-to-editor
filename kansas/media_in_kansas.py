@@ -31,7 +31,7 @@ with open('media_in_kansas.csv', 'r') as csvfile:
             raise Exception(obj['name'])
 
 
-for item in index.keys():
+for item in list(index.keys()):
 
     obj = index[item]
 #    print (obj)
@@ -40,7 +40,7 @@ for item in index.keys():
         if field in obj:
             v = obj[field]
             if v:
-                print ("TODO %s" % v)
+                print(("TODO %s" % v))
                 if v[0:3] == "www":
                     v = "http://" + v
                 elif v[0] == "?":

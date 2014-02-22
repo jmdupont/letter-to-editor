@@ -13,7 +13,7 @@ index2 = {}
 
 def index_object(filename, data, i):
     d = data[i]
-    for k in d.keys():
+    for k in list(d.keys()):
         if k not in (
                 'A',
                 'C',
@@ -63,7 +63,7 @@ def index_object(filename, data, i):
             cache.cache("http://%s" % v)
 
             index[v][k] = []
-            print ("adding key:'%s' val'%s'" % (k, v))
+            print(("adding key:'%s' val'%s'" % (k, v)))
             index[v][k].append(d)
 #            ref = "|".join((filename,i))
 #            if ref not in index[v][k] :
@@ -74,7 +74,7 @@ def index_object(filename, data, i):
 
 def index_data(filename, data):
 
-    for i in data.keys():
+    for i in list(data.keys()):
         index_object(filename, data, i)
 
 

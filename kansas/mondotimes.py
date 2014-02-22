@@ -45,7 +45,7 @@ class MyHTMLParser(HTMLParser):
         self.href = self.href.strip().rstrip()
         self.href = self.href.replace(" ", "%20")
         if self.href.find(" ") > 0:
-            print(self.href)
+            print((self.href))
         self.state.append(tag)
 
     def handle_endtag(self, tag):
@@ -107,7 +107,7 @@ class MondoInfoHTMLParser(HTMLParser):
         self.href = self.href.strip().rstrip()
         self.href = self.href.replace(" ", "%20")
         if self.href.find(" ") > 0:
-            print(self.href)
+            print((self.href))
         self.state.append(tag)
 
     def handle_endtag(self, tag):

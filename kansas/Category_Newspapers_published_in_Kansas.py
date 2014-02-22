@@ -1,10 +1,16 @@
+"""
+parsing of wikipedia
+Category:Newspapers_published_in_Kansas
+"""
 from cache import cache
 from html.parser import HTMLParser
 import yaml
 
 
 class MyHTMLParser(HTMLParser):
-
+    """
+    wikipedia html category parser
+    """
     def __init__(self):
         HTMLParser.__init__(self)
         self.state = []
@@ -23,14 +29,13 @@ class MyHTMLParser(HTMLParser):
                 if href[0] == "h":
                     self.href = href
                 else:
-                    url = "https://en.wikipedia.org%s" % href
-                    self.href = url
+                    self.href = "https://en.wikipedia.org%s" % href
             if self.href == 'https://en.wikipedia.org':
                 self.href = ""
         self.href = self.href.strip().rstrip()
         self.href = self.href.replace(" ", "%20")
         if self.href.find(" ") > 0:
-            print(self.href)
+            print((self.href))
         self.state.append(tag)
 
     def handle_endtag(self, tag):
@@ -47,7 +52,7 @@ class MyHTMLParser(HTMLParser):
             'div',
             'div', 'div', 'table', 'tr', 'td', 'ul', 'li', 'a'
         ]:
-            print("Article", data, self.href)
+            print(("Article", data, self.href))
             self.obj["name"] = data
             self.obj["page"] = self.href
             if "name" in self.obj:
@@ -63,16 +68,24 @@ class MyHTMLParser(HTMLParser):
         #self.obj[data] = str(self.href)
         self.href = ""
 
-url = 'https://en.wikipedia.org/wiki/Category:Newspapers_published_in_Kansas'
-string = cache(url)
-parser = MyHTMLParser()
-parser.feed(string)
+def main():
+    """
+    entry point
+    """
+    url = ('https://en.wikipedia.org/wiki/'
+           'Category:Newspapers_published_in_Kansas')
+    obj = cache(url)
+    parser = MyHTMLParser()
+    parser.feed(str(obj))
 
-for idx in parser.index:
-    obj = parser.index[idx]
-    for a in ("page", 'siteurl'):
-        if a in obj:
-            cache(obj[a])
+    for idx in parser.index:
+        obj = parser.index[idx]
+        for field in ("page", 'siteurl'):
+            if field in obj:
+                cache(obj[field])
 
-o = open('Category_Newspapers_published_in_Kansas.yaml', 'w')
-o.write(yaml.dump(parser.index, indent=4, default_flow_style=False))
+    output = open('Category_Newspapers_published_in_Kansas.yaml', 'w')
+    output.write(yaml.dump(parser.index, indent=4, default_flow_style=False))
+
+if __name__ == "__main__":
+    main()
