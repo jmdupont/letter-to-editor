@@ -5,6 +5,23 @@ Category:Newspapers_published_in_Kansas
 from cache import cache
 from html.parser import HTMLParser
 import yaml
+import mwparserfromhell
+
+class WikipediaPage:
+    def __init__(self, page):
+        self.page =page
+        _str = str(page)
+        #print (_str) 
+        wikicode = mwparserfromhell.parse(_str)
+        templates = wikicode.filter_templates()
+        for x in templates:
+            print ("template name %s" % x.name)
+#            print ("para %s" % x.params)
+            for p in x.params :
+                print ("name: %s" % p.name)
+                print ("value: %s" % p.value)
+
+            #print ("item %s" % x)
 
 
 class WikipediaParser(HTMLParser):
@@ -144,7 +161,8 @@ class WikipediaPageParser(WikipediaParser):
                     if a['scope']== 'row':
                         if '__tag__' in a :
                             if a['__tag__'] == 'th':
-                                print ("Title %s" % a['__data__'])
+                                pass
+                                #print ("Title %s" % a['__data__'])
 
                                 # ib inside {'__data__': ['\n', '\n', '\n'], '__tag__': 'tr'} :
                                 # ib inside {'scope:' 'row', '__data__': ['Owner(s)'], '__tag__': 'th', 'style': 'text-align:left;'} :
@@ -290,7 +308,13 @@ class WikipediaPageParser(WikipediaParser):
         self.obj['title']=title.replace(" - Wikipedia, the free encyclopedia",'')
 
     def on_href(self, href):
-        if href.startswith('https://en.wikipedia.org'):
+        if href.find('en.wikipedia.org') >= 0:
+            if href.find("&action=edit&section=1") > 0: 
+                x = href.replace('&action=edit&section=1','&action=raw')
+                print ("Get %s" % href)
+                obj2 = cache(x)
+                w= WikipediaPage(obj2)
+
             pass
         elif href.startswith('https://donate.wikimedia.org'):
             pass
@@ -321,7 +345,7 @@ def main():
                     p=WikipediaPageParser()
                     p.feed(str(obj2))
                     p.obj['url']=val
-                    print("FOUND:%s" % str(p.obj))
+                    #print("FOUND:%s" % str(p.obj))
 
 
     output = open('Category_Newspapers_published_in_Kansas.yaml', 'w')
